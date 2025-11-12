@@ -1,18 +1,24 @@
-import Layout from "../src/Components/Layout";
+import Layout from '@/Components/Layout';
+import { useEffect, useState } from 'react';
 
-export async function getServerSideProps() {
-    const res = await fetch("http://localhost:3001/user/12");
-    const data = await res.json();
+export default function App() {
+    const [firstName, setFirstName] = useState("");
 
-    return {
-        props: { user: data.data },
-    };
-}
+    useEffect(() => {
+        fetch('http://localhost:3000/user/18')
+            .then(response => response.json())
+            .then(data => {
+                setFirstName(data.data.userInfos.firstName); // récupère le prénom
+            })
+            .catch(err => console.error(err));
+    }, []);
 
-export default function Home({ user }) {
     return (
         <Layout>
-            <h1>Bienvenue, {user.userInfos.firstName}</h1>
+            <h1>
+                Bonjour <span style={{ color: "red" }}>{firstName}</span>
+            </h1>
         </Layout>
     );
 }
+
