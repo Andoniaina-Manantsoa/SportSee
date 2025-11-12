@@ -1,0 +1,18 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.contentWrapper {
+    display: flex;
+    /* sidebar à gauche, contenu à droite */
+    flex: 1;
+    /* prend tout l’espace disponible entre header et footer */
+}
+
+.mainContent {
+    flex: 1;
+    /* prend tout l’espace restant */
+    padding: 1rem;
+}
