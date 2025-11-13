@@ -1,5 +1,6 @@
 import Layout from '@/Components/Layout';
 import { useEffect, useState } from 'react';
+import ActivityChart from '@/Components/ActivityChart';
 
 export default function App() {
     const [firstName, setFirstName] = useState("");
@@ -21,6 +22,11 @@ export default function App() {
                     Bonjour <span className='username'>{firstName}</span>
                 </h1>
                 <p>Félicitation ! Vous avez explosé vos objectifs hier 👏</p>
+
+                {/* 👉 Ajout du graphique ici */}
+                <div className="charts-section mt-8">
+                    <ActivityChart userId={18} />
+                </div>
             </div>
         </Layout>
     );
