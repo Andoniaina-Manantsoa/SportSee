@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 export default function App() {
     const [firstName, setFirstName] = useState("");
 
+    //Récupérer prénom utilisateur
     useEffect(() => {
         fetch('http://localhost:3000/user/18')
             .then(response => response.json())
@@ -15,9 +16,12 @@ export default function App() {
 
     return (
         <Layout>
-            <h1>
-                Bonjour <span style={{ color: "red" }}>{firstName}</span>
-            </h1>
+            <div className='app-container'>
+                <h1>
+                    Bonjour <span className='username'>{firstName}</span>
+                </h1>
+                <p>Félicitation ! Vous avez explosé vos objectifs hier 👏</p>
+            </div>
         </Layout>
     );
 }

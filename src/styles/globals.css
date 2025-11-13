@@ -9,7 +9,8 @@ html,
 }
 
 .app-container {
-    display: flex;
+    /*display: flex;*/
+    margin: 50px;
 }
 
 .main-content {
