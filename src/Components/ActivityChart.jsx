@@ -20,6 +20,7 @@ export default function ActivityChart({ userId }) {
         fetchActivity();
     }, [userId]);
 
+    //fonction quand on survole une barre payload contient les valeurs du jour (poids + calories)
     function CustomTooltip({ payload, active }) {
         if (active && payload && payload.length) {
             return (
@@ -40,6 +41,8 @@ export default function ActivityChart({ userId }) {
                     <li>Poids (kg)</li>
                     <li>Calories brûlées (kCla)</li>
                 </ul>
+
+                {/*Construction de la légende manuellement*/}
                 <Legend
                     verticalAlign="top"
                     align="right"
@@ -50,16 +53,26 @@ export default function ActivityChart({ userId }) {
                     ]}
                 />
             </div>
+
+            {/*Ajustement de la taille du graphique au conteneur*/}
             <ResponsiveContainer width="100%" height={250}>
+
+                {/*Graphique alimenté par le tableau data*/}
                 <BarChart data={data} margin={{ top: 50, right: 20, left: 20 }}>
-                    <CartesianGrid strokeDasharray="3 3" vertical={false} />
+
+                    {/*Ajout grille horizontale en pointillés*/}
                     <CartesianGrid strokeDasharray="3 3" vertical={false} yAxisId="cal" />
+
+                    {/*affiche l’axe X (les jours).*/}
                     <XAxis dataKey="day" tickFormatter={(d, i) => i + 1} />
+                    
+                    {/*affiche deux axes Y (poids et calories).*/}
                     <YAxis yAxisId="kg" orientation="right" dataKey="kilogram" axisLine={false} tickLine={false} />
                     <YAxis yAxisId="cal" hide dataKey="calories" />
 
                     <Tooltip content={<CustomTooltip />} />
 
+                    {/*Barres du graphique*/}
                     <Bar yAxisId="kg" dataKey="kilogram" fill="#282D30" barSize={8} radius={[3, 3, 0, 0]} />
                     <Bar yAxisId="cal" dataKey="calories" fill="#E60000" barSize={8} radius={[3, 3, 0, 0]} />
                 </BarChart>
